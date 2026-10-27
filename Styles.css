@@ -206,15 +206,15 @@ canvas {
 
 /* --- 2. Stempel Merah (Hanko Stamp) --- */
 .name-wrapper {
+    display: inline-block; 
     position: relative;
-    display: inline-block; /* Agar lebarnya pas dengan teks nama */
-    margin: 1.5rem 0; /* Memberi jarak atas bawah */
+    padding-right: 40px; 
 }
 
 .hanko-stamp {
     position: absolute;
-    bottom: -5px; /* Menempel di area bawah teks */
-    right: -40px; /* Keluar sedikit di sebelah kanan teks */
+    bottom: 10px; /* Menempel di area bawah teks */
+    right: 155px; /* Keluar sedikit di sebelah kanan teks */
     width: 32px;
     height: 32px;
     border: 2px solid #b32d2e; /* Warna merah tinta khas stempel */
