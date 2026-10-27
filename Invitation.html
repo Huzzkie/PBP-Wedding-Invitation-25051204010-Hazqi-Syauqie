@@ -1,0 +1,522 @@
+<!DOCTYPE html>
+<html lang="en" class="lock-scroll">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Wedding Invitation</title>
+    <link rel="stylesheet" href="Styles.css"> 
+    <link rel="stylesheet" href="bootstrap-5.3.8-dist/css/bootstrap.min.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@400..700&family=Shippori+Mincho&family=Yusei+Magic&display=swap" rel="stylesheet">
+</head>
+<body id="body-page" class="lock-scroll">
+<!-- Animasi Sakura Tetap Paling Belakang (Layer 1) -->
+    <canvas id="sakura-canvas"></canvas>
+    <script src="Sakura.js"></script>
+
+    <!-- Splash Screen Penuh Layar (Layer 2) -->
+    <section id="splash-screen" class="d-flex justify-content-center align-items-center vh-100 vw-100">
+
+        <!-- Mizuhiki Knot-->
+        <!-- Tali Kiri -->
+         <div class="rope-container rope-left">
+            <!-- SVG khusus untuk Simpul saja -->
+            <svg class="rope-knot" viewBox="0 0 60 100" fill="none" stroke="#d4af37" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M 30 15 C 0 15, 0 45, 30 50 C 60 55, 60 85, 30 85 C 0 85, 0 55, 30 50 C 60 45, 60 15, 30 15 Z" stroke-width="2.5" />
+                <path d="M 30 23 C 10 23, 10 45, 30 50 C 50 55, 50 77, 30 77 C 10 77, 10 55, 30 50 C 50 45, 50 23, 30 23 Z" stroke-width="2.5" />
+                <path d="M 30 31 C 20 31, 20 45, 30 50 C 40 55, 40 69, 30 69 C 20 69, 20 55, 30 50 C 40 45, 40 31, 30 31 Z" stroke-width="2.5" />
+            </svg>
+        </div>
+
+        <!-- Tali Kanan -->
+        <div class="rope-container rope-right">
+            <!-- SVG khusus untuk Simpul saja -->
+            <svg class="rope-knot" viewBox="0 0 60 100" fill="none" stroke="#d4af37" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M 30 15 C 0 15, 0 45, 30 50 C 60 55, 60 85, 30 85 C 0 85, 0 55, 30 50 C 60 45, 60 15, 30 15 Z" stroke-width="2.5" />
+                <path d="M 30 23 C 10 23, 10 45, 30 50 C 50 55, 50 77, 30 77 C 10 77, 10 55, 30 50 C 50 45, 50 23, 30 23 Z" stroke-width="2.5" />
+                <path d="M 30 31 C 20 31, 20 45, 30 50 C 40 55, 40 69, 30 69 C 20 69, 20 55, 30 50 C 40 45, 40 31, 30 31 Z" stroke-width="2.5" />
+            </svg>
+        </div>
+
+        <!-- Kartu Kaca -->
+        <div class="glass-card text-center p-5 rounded-4 shadow-lg">
+            
+            <!-- Elemen 1: Aksen 4 Sudut (Letakkan persis di bawah tag pembuka glass-card) -->
+            <div class="corner-top-left"></div>
+            <div class="corner-top-right"></div>
+            <div class="corner-bottom-left"></div>
+            <div class="corner-bottom-right"></div>
+
+            <p class="subtitle mb-2">You are invited to the wedding of:</p>
+            
+            <!-- Elemen 2: Bungkus tag <h1> namamu dengan div ini agar stempelnya menempel -->
+            <div class="name-wrapper">
+                <h1 class="title-utama my-0">When & Yah</h1>
+                <!-- Stempel Hanko berhuruf Kanji "Yui" (Ikatan/Menyatukan) -->
+                <div class="hanko-stamp">結</div> 
+            </div>
+            
+            <!-- Elemen 3: Garis Pemisah (Letakkan di antara nama dan tombol) -->
+            <div class="gold-divider my-4"></div>
+            
+            <button id="btn-open" class="btn-custom-jepang">
+                Open Invitation
+            </button>
+        </div>
+    </section>
+
+    <!-- Hero page -->
+    <section id="hero-page" class="d-flex justify-content-center align-items-center vh-100 vw-100">
+        <div class="glass-card text-center p-5 rounded-4 shadow-lg">
+            
+            <div class="corner-top-left"></div>
+            <div class="corner-top-right"></div>
+            <div class="corner-bottom-left"></div>
+            <div class="corner-bottom-right"></div>
+
+            <p class="subtitle mb-2">THE WEDDING OF</p>
+            <div class="name-wrapper">
+                <h1 class="title-utama my-0">When & Yah</h1>
+                <div class="hanko-stamp">結</div> 
+            </div>
+            <p class="subtitle mt-3">SATURDAY | 29 . 10 . 2026</p>
+            
+            <div class="gold-divider my-4"></div>
+            
+            <!-- Tempat Countdown Timer -->
+            <div class="countdown-wrapper mt-4">
+                <!-- Kotak Hari -->
+                <div class="timer-box">
+                    <div class="time-number" id="days">00</div>
+                    <div class="time-label">DAYS</div>
+                </div>
+                
+                <!-- Kotak Jam -->
+                <div class="timer-box">
+                    <div class="time-number" id="hours">00</div>
+                    <div class="time-label">HOURS</div>
+                </div>
+                
+                <!-- Kotak Menit -->
+                <div class="timer-box">
+                    <div class="time-number" id="minutes">00</div>
+                    <div class="time-label">MINUTES</div>
+                </div>
+                
+                <!-- Kotak Detik -->
+                <div class="timer-box">
+                    <div class="time-number" id="seconds">00</div>
+                    <div class="time-label">SECONDS</div>
+                </div>
+            </div>
+                        
+        </div>
+    </section>
+
+    <!-- 3. Elemen Audio (Siapkan file MP3 lagu Jepang di folder assets) -->
+    <audio id="bg-music" loop>
+        <source src="assets/Masaru Yokoyama - Again [ Shigatsu wa kimi no uso ] [ EP ] - (320 Kbps).mp3" type="audio/mpeg">
+    </audio>
+    <!-- 4. Panggil file JavaScript -->
+    <script src="Script.js"></script>
+
+    <!-- Navbar Kaca Transparan (Muncul setelah Open Invitation) -->
+    <!-- Navbar Kaca Transparan (Muncul setelah Open Invitation) -->
+    <nav id="main-navbar" class="navbar navbar-expand navbar-dark fixed-top d-none" style="background: rgba(20, 25, 30, 0.45); backdrop-filter: blur(12px); border-bottom: 1px solid rgba(212, 175, 55, 0.3); z-index: 1000;">
+        <div class="container-fluid px-4">
+            
+            <!-- Inisial Pasangan di Kiri -->
+            <a class="navbar-brand" href="#hero-page" style="font-family: 'Shippori Mincho', serif; color: #d4af37; font-size: 1.5rem;">
+                W <span style="font-size: 1rem; color:#fff;">&</span> Y
+            </a>
+            
+            <!-- Menu Navigasi Tengah (Langsung ke Section) -->
+            <div class="collapse navbar-collapse justify-content-center">
+                <ul class="navbar-nav gap-4">
+                    <li class="nav-item">
+                        <a class="nav-link custom-nav-link" href="#hero-page">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link custom-nav-link" href="#couple-profile">Profile</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link custom-nav-link" href="#event-details">Details</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link custom-nav-link" href="#rsvp-section">RSVP</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link custom-nav-link" href="#wishes-section">Wishes</a>
+                    </li>
+                </ul>
+            </div>
+            
+            <!-- Tombol Toggle Musik di Kanan -->
+            <button id="btn-music" class="btn btn-outline-warning btn-sm" style="border-color: #d4af37; color: #d4af37; border-radius: 20px; padding: 4px 15px;">
+                🎵 Music: ON
+            </button>
+
+        </div>
+    </nav>
+
+    <!-- Halaman 3: Profil Pasangan -->
+    <section id="couple-profile" class="d-flex justify-content-center align-items-center min-vh-100 vw-100 py-5">
+        
+        <!-- Lebar maksimal dibesarkan (900px) agar dua profil muat berdampingan di PC -->
+        <div class="glass-card text-center p-5 rounded-4 shadow-lg" style="max-width: 900px; width: 100%;">
+            
+            <!-- Ornamen 4 Sudut -->
+            <div class="corner-top-left"></div>
+            <div class="corner-top-right"></div>
+            <div class="corner-bottom-left"></div>
+            <div class="corner-bottom-right"></div>
+
+            <!-- Bagian Kutipan (Quote) -->
+            <div class="quote-container mb-5 mt-3">
+                <p class="quote-en mb-2">“If destiny entwines two souls, they'll eventually rediscover their path back to each other.”</p>
+                <p class="quote-id">(Jika takdir merajut dua jiwa, mereka pada akhirnya akan menemukan kembali jalan untuk kembali satu sama lain)</p>
+            </div>
+            
+            <!-- Garis Pemisah Kecil -->
+            <div class="gold-divider mb-5" style="width: 30%;"></div>
+
+            <!-- Grid Profil Pasangan (Berdampingan Kiri-Kanan) -->
+            <div class="row align-items-center">
+                
+                <!-- Profil Pria -->
+                <div class="col-md-6 mb-4 mb-md-0">
+                    <!-- Lingkaran Placeholder Foto -->
+                    <div class="profile-photo placeholder-photo mx-auto mb-3"></div>
+                    <h2 class="profile-name">Lorem Ipsum</h2>
+                    <p class="parents-name mt-2">
+                        Putra dari:<br>
+                        <span class="fw-bold">Bpk. Lorem Ipsum & Ibu Dolor Sit Amet</span>
+                    </p>
+                </div>
+
+                <!-- Profil Wanita -->
+                <div class="col-md-6">
+                    <div class="profile-photo placeholder-photo mx-auto mb-3"></div>
+                    <h2 class="profile-name">Lorem Ipsum</h2>
+                    <p class="parents-name mt-2">
+                        Putri dari:<br>
+                        <span class="fw-bold">Bpk. Consectetur Adipiscing & Ibu Elit Sed</span>
+                    </p>
+                </div>
+                
+            </div>
+        </div>
+    </section>
+
+    <!-- Halaman 4: Detail Acara (Event Details) -->
+    <section id="event-details" class="d-flex justify-content-center align-items-center">
+        
+        <!-- SVG Background (Washi Paper) -->
+        <!-- SVG Washi Paper (Sudut Simetris & Responsif) -->
+        <svg class="washi-bg-svg" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1920 1080" preserveAspectRatio="none">
+            <defs>
+                <linearGradient id="paper" x1="0" y1="0" x2="1" y2="1">
+                <stop offset="0%" stop-color="#F8F0E3"/>
+                <stop offset="55%" stop-color="#F2E5D2"/>
+                <stop offset="100%" stop-color="#F9F1E5"/>
+                </linearGradient>
+
+                <filter id="fiber">
+                <feTurbulence type="fractalNoise" baseFrequency="0.65" numOctaves="2" seed="8"/>
+                <feColorMatrix type="saturate" values="0"/>
+                <feComponentTransfer>
+                    <feFuncA type="table" tableValues="0 0.12"/>
+                </feComponentTransfer>
+                </filter>
+
+                <pattern id="lines" width="37" height="29" patternUnits="userSpaceOnUse">
+                <path d="M2 8 l12 -1 M22 21 l9 1 M8 27 l5 -1" stroke="#9D8264" stroke-width=".55" opacity=".18" fill="none"/>
+                </pattern>
+            </defs>
+
+            <!-- Dasar kertas gading -->
+            <rect width="100%" height="100%" fill="url(#paper)"/>
+
+            <!-- Serat kertas -->
+            <rect width="100%" height="100%" filter="url(#fiber)" opacity=".22"/>
+
+            <!-- Pola garis tipis -->
+            <rect width="100%" height="100%" fill="url(#lines)"/>
+
+            <!-- Ornamen 4 Sudut Emas (Diperbaiki menjadi siku sempurna 100x100) -->
+            <g fill="none" stroke="#C49A43" stroke-width="2" opacity=".8">
+                <!-- Kiri Atas -->
+                <path d="M 60 160 V 60 H 160"/>
+                <!-- Kanan Atas -->
+                <path d="M 1760 60 H 1860 V 160"/>
+                <!-- Kiri Bawah -->
+                <path d="M 60 920 V 1020 H 160"/>
+                <!-- Kanan Bawah -->
+                <path d="M 1760 1020 H 1860 V 920"/>
+            </g>
+
+            <!-- 4 Titik Emas Simetris di Setiap Sudut -->
+            <g fill="#C49A43" opacity=".8">
+                <circle cx="110" cy="60" r="3"/>
+                <circle cx="1810" cy="60" r="3"/>
+                <circle cx="110" cy="1020" r="3"/>
+                <circle cx="1810" cy="1020" r="3"/>
+            </g>
+        </svg>
+
+        <!-- Konten Detail Acara (Berada di atas SVG) -->
+        <!-- Konten Detail Acara (Berada di atas SVG) -->
+        <div class="container text-center event-content-wrapper">
+            
+            <h2 class="title-utama mb-2" style="color: #c0392b; font-size: 2.8rem;">Wedding Details</h2>
+            <div class="custom-divider my-2">────────  ✦  ────────</div>
+            <!-- Margin bawah kutipan dikurangi dari mb-5 ke mb-4 -->
+            <p class="event-quote mb-4">"A day to remember, a love that lasts forever"</p>
+
+            <!-- Margin atas row dikurangi dari mt-4 ke mt-3 -->
+            <div class="row mt-3 justify-content-center gap-4">
+                
+                <div class="col-md-5 event-box p-3"> <!-- Padding kotak dikurangi jadi p-3 -->
+                    <h3 class="event-title">Akad Nikah</h3>
+                    <p class="event-text mt-2 mb-2"> <!-- Jarak teks dirapatkan -->
+                        <strong>Sabtu, 16 Oktober 2026</strong><br>
+                        08:00 - 10:00 WIB
+                    </p>
+                    <p class="event-text mb-2">
+                        <strong>Masjid Agung XYZ</strong><br>
+                        Jl. Contoh Alamat No. 123, Kota, Provinsi
+                    </p>
+                    <button class="btn-custom-jepang btn-sm mt-2" style="padding: 6px 25px; font-size: 0.95rem;">
+                        Buka di Maps
+                    </button>
+                </div>
+
+                <div class="col-md-5 event-box p-3"> <!-- Padding kotak dikurangi jadi p-3 -->
+                    <h3 class="event-title">Resepsi</h3>
+                    <p class="event-text mt-2 mb-2"> <!-- Jarak teks dirapatkan -->
+                        <strong>Sabtu, 16 Oktober 2026</strong><br>
+                        11:00 - 14:00 WIB
+                    </p>
+                    <p class="event-text mb-2">
+                        <strong>Grand Ballroom XYZ</strong><br>
+                        Jl. Contoh Alamat No. 123, Kota, Provinsi
+                    </p>
+                    <button class="btn-custom-jepang btn-sm mt-2" style="padding: 6px 25px; font-size: 0.95rem;">
+                        Buka di Maps
+                    </button>
+                </div>
+
+            </div>
+
+            <!-- Jarak area bawah diperkecil dari mt-5 ke mt-3 -->
+            <div class="bottom-event-area mt-3">
+                <p class="presence-text mb-1">We look forward to your presence.</p>
+                
+                <div class="scroll-indicator mt-2">
+                    <span style="font-size: 1.2rem;">↓</span><br>
+                    <span style="font-size: 0.75rem;">SCROLL</span>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- Halaman 5: RSVP & Ucapan -->
+    <section id="rsvp-section" class="d-flex justify-content-center align-items-center">
+        
+        <!-- SVG Washi Paper (Background berlanjut) -->
+        <svg class="washi-bg-svg" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1920 1080" preserveAspectRatio="none">
+            <!-- (Gunakan isi tag <defs> sampai <circle> yang SAMA PERSIS dengan di Wedding Details) -->
+            <defs>
+                <linearGradient id="paper" x1="0" y1="0" x2="1" y2="1">
+                    <stop offset="0%" stop-color="#F8F0E3"/>
+                    <stop offset="55%" stop-color="#F2E5D2"/>
+                    <stop offset="100%" stop-color="#F9F1E5"/>
+                </linearGradient>
+                <filter id="fiber">
+                    <feTurbulence type="fractalNoise" baseFrequency="0.65" numOctaves="2" seed="8"/>
+                    <feColorMatrix type="saturate" values="0"/>
+                    <feComponentTransfer><feFuncA type="table" tableValues="0 0.12"/></feComponentTransfer>
+                </filter>
+                <pattern id="lines" width="37" height="29" patternUnits="userSpaceOnUse">
+                    <path d="M2 8 l12 -1 M22 21 l9 1 M8 27 l5 -1" stroke="#9D8264" stroke-width=".55" opacity=".18" fill="none"/>
+                </pattern>
+            </defs>
+            <rect width="100%" height="100%" fill="url(#paper)"/>
+            <rect width="100%" height="100%" filter="url(#fiber)" opacity=".22"/>
+            <rect width="100%" height="100%" fill="url(#lines)"/>
+            <g fill="none" stroke="#C49A43" stroke-width="2" opacity=".8">
+                <path d="M 60 160 V 60 H 160"/>
+                <path d="M 1760 60 H 1860 V 160"/>
+                <path d="M 60 920 V 1020 H 160"/>
+                <path d="M 1760 1020 H 1860 V 920"/>
+            </g>
+            <g fill="#C49A43" opacity=".8">
+                <circle cx="110" cy="60" r="3"/>
+                <circle cx="1810" cy="60" r="3"/>
+                <circle cx="110" cy="1020" r="3"/>
+                <circle cx="1810" cy="1020" r="3"/>
+            </g>
+        </svg>
+
+        <!-- Konten RSVP -->
+        <div class="container event-content-wrapper" style="max-width: 700px;">
+            <div class="text-center mb-3"> <!-- Margin bawah dikurangi -->
+                <h2 class="title-utama mb-1" style="color: #c0392b; font-size: 2.6rem;">RSVP & Wishes</h2>
+                <div class="custom-divider my-1">────────  ✦  ────────</div>
+                <p class="event-text mt-2 mb-1">Silakan konfirmasi kehadiran Anda dan berikan doa restu.</p>
+                <p class="event-text mb-0">Kehadiran anda sangat berarti bagi kami</p>
+            </div>
+
+            <!-- Form RSVP -->
+            <form id="rsvp-form" class="mt-3">
+                <!-- Input Nama -->
+                <div class="mb-3">
+                    <label for="guest-name" class="form-label rsvp-label mb-1">Nama Lengkap</label>
+                    <input type="text" class="form-control rsvp-input" id="guest-name" placeholder="Tulis nama Anda..." required>
+                </div>
+
+                <!-- Radio Button Kehadiran -->
+                <div class="mb-3 text-center">
+                    <label class="form-label rsvp-label d-block mb-2">Apakah Anda akan hadir?</label>
+                    <div class="form-check form-check-inline me-4">
+                        <input class="form-check-input custom-radio" type="radio" name="attendance" id="attend-yes" value="Hadir" required>
+                        <label class="form-check-label event-text" for="attend-yes">Ya, Saya Hadir</label>
+                    </div>
+                    <div class="form-check form-check-inline">
+                        <input class="form-check-input custom-radio" type="radio" name="attendance" id="attend-no" value="Tidak Hadir">
+                        <label class="form-check-label event-text" for="attend-no">Maaf, Tidak Bisa Hadir</label>
+                    </div>
+                </div>
+
+                <!-- Textarea Ucapan -->
+                <div class="mb-3">
+                    <label for="guest-wish" class="form-label rsvp-label mb-1">Ucapan & Doa untuk Mempelai</label>
+                    <!-- rows dikurangi jadi 2 agar lebih hemat tempat -->
+                    <textarea class="form-control rsvp-input" id="guest-wish" rows="2" placeholder="Tulis doa dan harapan Anda..." required></textarea>
+                </div>
+
+               <!-- Tombol Submit -->
+                <div class="text-center mt-4">
+                    <button type="submit" class="btn-custom-jepang" style="padding: 8px 35px; font-size: 1rem;">Kirim Pesan</button>
+                </div>
+            </form>
+            
+            <!-- Tempat Pesan Sukses (Tersembunyi secara default) -->
+            <div id="rsvp-success-msg" class="text-center mt-2 d-none">
+                <p style="color: #27ae60; font-family: 'Shippori Mincho', serif; font-weight: bold; margin-bottom: 0;">✓ Terima kasih! Pesan Anda telah tersimpan.</p>
+            </div>
+            
+        </div>
+    </section>
+
+    <!-- Halaman 6: Wedding Wishes (Guestbook) -->
+    <section id="wishes-section" class="d-flex justify-content-center py-5">
+        
+        <!-- SVG Washi Paper (Background berlanjut) -->
+        <svg class="washi-bg-svg" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1920 1080" preserveAspectRatio="none">
+            <!-- (Isi defs dan rect sama persis seperti RSVP) -->
+            <defs>
+                <linearGradient id="paper" x1="0" y1="0" x2="1" y2="1">
+                    <stop offset="0%" stop-color="#F8F0E3"/>
+                    <stop offset="55%" stop-color="#F2E5D2"/>
+                    <stop offset="100%" stop-color="#F9F1E5"/>
+                </linearGradient>
+                <filter id="fiber">
+                    <feTurbulence type="fractalNoise" baseFrequency="0.65" numOctaves="2" seed="8"/>
+                    <feColorMatrix type="saturate" values="0"/>
+                    <feComponentTransfer><feFuncA type="table" tableValues="0 0.12"/></feComponentTransfer>
+                </filter>
+                <pattern id="lines" width="37" height="29" patternUnits="userSpaceOnUse">
+                    <path d="M2 8 l12 -1 M22 21 l9 1 M8 27 l5 -1" stroke="#9D8264" stroke-width=".55" opacity=".18" fill="none"/>
+                </pattern>
+            </defs>
+            <rect width="100%" height="100%" fill="url(#paper)"/>
+            <rect width="100%" height="100%" filter="url(#fiber)" opacity=".22"/>
+            <rect width="100%" height="100%" fill="url(#lines)"/>
+            <g fill="none" stroke="#C49A43" stroke-width="2" opacity=".8">
+                <path d="M 60 160 V 60 H 160"/>
+                <path d="M 1760 60 H 1860 V 160"/>
+                <path d="M 60 920 V 1020 H 160"/>
+                <path d="M 1760 1020 H 1860 V 920"/>
+            </g>
+            <g fill="#C49A43" opacity=".8">
+                <circle cx="110" cy="60" r="3"/>
+                <circle cx="1810" cy="60" r="3"/>
+                <circle cx="110" cy="1020" r="3"/>
+                <circle cx="1810" cy="1020" r="3"/>
+            </g>
+        </svg>
+
+        <div class="container event-content-wrapper" style="max-width: 800px; z-index: 5;">
+            
+            <!-- Header Wishes -->
+            <div class="text-center mb-4">
+                <p class="mb-2" style="font-size: 0.9rem; letter-spacing: 2px; color: #C49A43; text-transform: uppercase;">A Collection of Love & Prayers</p>
+                <h2 class="title-utama mb-2" style="color: #5c0011; font-size: 2.8rem;">Wedding Wishes</h2>
+                <p class="event-quote mb-4">"Every kind word becomes a beautiful memory."</p>
+                
+                <!-- Garis Pemisah Simple -->
+                <div class="my-4" style="border-top: 1px solid #C49A43; width: 100%; opacity: 0.5;"></div>
+
+                <!-- Total Counter -->
+                <h3 id="total-wishes" style="color: #5c0011; font-size: 2rem; font-weight: bold; font-family: 'Shippori Mincho', serif;" class="mb-1">0</h3>
+                <p class="event-text mb-4">Messages of love and happiness</p>
+            </div>
+
+            <!-- Kontainer List Ucapan -->
+            <div id="wishes-container" class="d-flex flex-column gap-3">
+                <!-- Data dari LocalStorage akan muncul di sini via Javascript -->
+            </div>
+
+            <!-- Bagian Footer: Load More & Indikator -->
+            <div class="text-center mt-4">
+                <p id="showing-text" class="event-text" style="font-size: 0.95rem; color: #888;">Showing 0 of 0 wishes</p>
+                <button id="btn-load-more" class="btn btn-outline-wishes rounded-pill mt-2 d-none">Load More Wishes</button>
+            </div>
+            
+        </div>
+    </section>
+
+    <!-- Halaman 7: Penutup (Thank You) -->
+    <section id="closing-section" class="d-flex justify-content-center align-items-center text-center">
+
+        <svg class="corner-bg-svg" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1920 1080" preserveAspectRatio="none">
+            <!-- Sudut Kanan Atas -->
+            <g fill="none" stroke="#C49A43" stroke-width="2" opacity=".8">
+                <path d="M 1760 60 H 1860 V 160"/>
+            </g>
+            <circle fill="#C49A43" opacity=".8" cx="1810" cy="60" r="3"/>
+
+            <!-- Sudut Kiri Bawah -->
+            <g fill="none" stroke="#C49A43" stroke-width="2" opacity=".8">
+                <path d="M 60 920 V 1020 H 160"/>
+            </g>
+            <circle fill="#C49A43" opacity=".8" cx="110" cy="1020" r="3"/>
+        </svg>
+
+        <div class="container closing-content-wrapper p-4">
+            
+            <!-- Teks Utama -->
+            <h1 class="title-utama mb-2" style="color: #c0392b; font-size: 4rem;">Thank You</h1>
+            <p class="event-text mb-5" style="font-size: 1.2rem; letter-spacing: 2px;">For being a part of our special day.</p>
+            
+            <!-- Kutipan Bahasa Indonesia -->
+            <p class="event-quote mb-5 px-md-5" style="line-height: 1.8;">
+                “Terima kasih atas doa, ucapan, dan kasih sayang yang telah diberikan.<br>
+                Semoga kebahagiaan selalu menyertai kita semua.”
+            </p>
+            
+            <!-- Salam Penutup & Nama Mempelai -->
+            <div class="mt-5 pt-3">
+                <p class="mb-1" style="font-family: 'Shippori Mincho', serif; color: #5c0011; font-size: 1.2rem; font-style: italic;">With Love,</p>
+                <!-- Menggunakan font Yusei Magic (class profile-name) agar senada dengan halaman profil -->
+                <h2 class="profile-name mt-2" style="font-size: 3rem;">When & Yah</h2>
+            </div>
+
+        </div>
+    </section>
+</body>
+</body>
+</html>

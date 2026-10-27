@@ -1,0 +1,686 @@
+/*Japanese Fonts*/
+.yusei-magic-regular {
+  font-family: "Yusei Magic", sans-serif;
+  font-weight: 400;
+  font-style: normal;
+}
+
+.shippori-mincho-regular {
+  font-family: "Shippori Mincho", serif;
+  font-weight: 800;
+  font-style: normal;
+}
+
+
+.caveat-Unique {
+  font-family: "Caveat", cursive;
+  font-optical-sizing: auto;
+  font-weight: 400px;
+  font-style: normal;
+}
+
+html {
+    scroll-behavior: smooth; /* Bikin efek scroll jadi mulus (nggak langsung lompat) */
+}
+
+.lock-scroll {
+    overflow: hidden !important;
+    height: 100vh !important;
+}
+
+/* Mengatur Background Utama Layar PC */
+html, body {
+    margin: 0;
+    padding: 0;
+    /* Ganti URL ini dengan gambar landscape dari Pinterest pilihanmu */
+    background-image: url(Assets/SplashBackground.jpeg);
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed; /* Bikin efek parallax saat di-scroll */
+    overflow-x: hidden;
+}
+body.lock-scroll {
+    overflow: hidden !important;
+}
+
+/* Konfigurasi Canvas Sakura */
+canvas { 
+    position: fixed; 
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    z-index: 1; /* Di atas background, di bawah kartu kaca */
+    pointer-events: none; 
+}
+
+/* Memastikan Splash Screen menutupi layar */
+#splash-screen {
+    position: relative;
+    z-index: 10;
+}
+
+/* === EFEK KACA (GLASSMORPHISM) === */
+.glass-card {
+    position: relative;
+
+    /* Warna gelap transparan */
+    background: rgba(255, 255, 255, 0.25);
+    
+    /* Efek blur pada background di balik kartu (Ini kuncinya!) */
+    backdrop-filter: blur(12px); 
+    -webkit-backdrop-filter: blur(12px);
+    
+    /* Border tipis transparan agar terlihat seperti ujung kaca */
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    
+    /* Lebar maksimal kartu agar tidak kepanjangan di monitor besar */
+    max-width: 700px;
+    width: 100%;
+}
+
+/* Tipografi */
+.subtitle {
+    font-family: 'Shippori Mincho', serif;
+    color: #5c0011; /* Kuning keemasan pucat agar terlihat elegan dan menyatu */
+    font-size: 1.75rem;
+    letter-spacing: 4px;
+}
+
+.title-utama {
+    font-family: 'Shippori Mincho', sans-serif;
+    color: #d4af37; /* Ganti warnanya jadi kode warna Emas ini */
+    font-size: 5rem; 
+    text-shadow: 0px 8px 16px rgba(0, 0, 0, 0.15); /* Sedikit bayangan gelap agar warna emasnya menonjol menembus efek kaca */
+}
+
+/* Open Invitation */
+.btn-custom-jepang {
+    /* Tipografi */
+    font-family: 'Shippori Mincho', serif;
+    font-size: 1.3rem;
+    font-weight: 700;
+    color: #5c0011; /* Warna teks merah gelap/maroon elegan */
+    
+    /* Warna Latar Washi */
+    background-color: #fff8f0; 
+    
+    /* Trik Bingkai Ganda CSS Murni (Tanpa Gambar) */
+    border: 2px solid #d4af37; /* Garis emas tipis di luar */
+    outline: 2px solid #d4af37; /* Garis emas agak tebal di dalam */
+    outline-offset: -6px; /* Menarik garis outline ke bagian dalam tombol */
+    
+    /* Layout */
+    padding: 12px 45px;
+    margin-top: 2rem;
+    border-radius: 4px; /* Ujung kotak tegas klasik */
+    cursor: pointer;
+    
+    /* Transisi & Cahaya */
+    transition: all 0.3s ease;
+    box-shadow: 0 10px 50px rgba(212, 175, 55, 0.25); /* Glow emas tipis */
+}
+
+.btn-custom-jepang:hover {
+    background-color: #d4af37; /* Tombol berubah full emas saat disentuh mouse */
+    color: #ffffff; /* Teks berubah putih */
+    transform: translateY(-3px); /* Efek melayang */
+    box-shadow: 0 6px 20px rgba(212, 175, 55, 0.5); /* Glow emas membesar */
+}
+
+/* ====================== */
+/* ORNAMENT SPLASH SCREEN */
+/* Container tali dari atas ke bawah layar */
+.rope-container {
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    width: 40px; /* Area untuk talinya */
+    display: flex;
+    justify-content: center;
+    z-index: 15;
+}
+
+.rope-left { left: 5%; }
+.rope-right { right: 5%; }
+
+
+
+/* Mizuhiki Knot */
+/* 1. Tali Luar (Kiri & Kanan) - Pakai drop-shadow agar hanya pinggirannya yang menyala */
+.rope-container::before {
+    content: '';
+    position: absolute;
+    top: 0; bottom: 0;
+    width: 14px; 
+    border-left: 2px solid #d4af37; 
+    border-right: 2px solid #d4af37; 
+    
+    /* Pendaran emas tipis untuk tali luar */
+    filter: drop-shadow(0 0 4px rgba(212, 175, 55, 0.5)); 
+}
+
+/* 2. Tali Tengah - Pakai box-shadow karena dia bentuknya balok solid */
+.rope-container::after {
+    content: '';
+    position: absolute;
+    top: 0; bottom: 0;
+    width: 2px;
+    background-color: #d4af37; 
+    
+    /* Pendaran emas tipis untuk tali tengah */
+    box-shadow: 0 0 4px rgba(212, 175, 55, 0.5); 
+}
+
+/* 3. Simpul Tengah (Knot) - Hapus warna gelap, ganti dengan pendaran emas */
+.rope-knot {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 45px; 
+    z-index: 2; 
+    
+    /* Hapus total background gelapnya biar bersih */
+    background: transparent; 
+    border-radius: 50%;
+    
+    /* Pendaran emas yang sedikit lebih terang (opacity 0.8) dan memusat di simpul */
+    filter: drop-shadow(0 0 6px rgba(212, 175, 55, 0.8));
+}
+
+/* --- 1. Aksen Sudut (Corner Brackets) --- */
+.corner-top-left, .corner-top-right, .corner-bottom-left, .corner-bottom-right {
+    position: absolute;
+    width: 30px; /* Panjang garis sudut */
+    height: 30px;
+    border-color: rgba(212, 175, 55, 0.7); /* Warna emas natural */
+    border-style: solid;
+    z-index: 5;
+}
+
+/* Mengatur posisi dan letak border tiap sudut */
+.corner-top-left { top: 20px; left: 20px; border-width: 2px 0 0 2px; }
+.corner-top-right { top: 20px; right: 20px; border-width: 2px 2px 0 0; }
+.corner-bottom-left { bottom: 20px; left: 20px; border-width: 0 0 2px 2px; }
+.corner-bottom-right { bottom: 20px; right: 20px; border-width: 0 2px 2px 0; }
+
+/* --- 2. Stempel Merah (Hanko Stamp) --- */
+.name-wrapper {
+    position: relative;
+    display: inline-block; /* Agar lebarnya pas dengan teks nama */
+    margin: 1.5rem 0; /* Memberi jarak atas bawah */
+}
+
+.hanko-stamp {
+    position: absolute;
+    bottom: -5px; /* Menempel di area bawah teks */
+    right: -40px; /* Keluar sedikit di sebelah kanan teks */
+    width: 32px;
+    height: 32px;
+    border: 2px solid #b32d2e; /* Warna merah tinta khas stempel */
+    color: #b32d2e;
+    font-family: 'Shippori Mincho', serif; /* Memanfaatkan font kaligrafi yang sudah ada */
+    font-size: 1.1rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 4px; /* Sudut stempel asli biasanya tidak lancip sempurna */
+    opacity: 0.85;
+    transform: rotate(-12deg); /* Memberikan efek cap tangan yang miring natural */
+    user-select: none;
+}
+
+/* --- 3. Garis Pemisah (Divider) --- */
+.gold-divider {
+    width: 60%; /* Mengisi 60% dari lebar kartu */
+    height: 1.5px;
+    margin: 0 auto; /* Menengahkan garis */
+    /* Gradasi: Transparan di ujung kiri-kanan, solid emas di tengah */
+    background: linear-gradient(to right, transparent, #d4af37, transparent);
+    opacity: 0.8;
+}
+
+
+/* --- Menu Navigasi Navbar --- */
+.custom-nav-link {
+    font-family: 'Shippori Mincho', serif;
+    color: #F8F0E3 !important; /* Krem kertas Washi */
+    font-size: 0.9rem;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    transition: all 0.3s ease;
+}
+
+/* Efek menyala emas saat kursor mendekat */
+.custom-nav-link:hover {
+    color: #d4af37 !important;
+    text-shadow: 0 0 8px rgba(212, 175, 55, 0.4);
+    transform: translateY(-2px);
+}
+
+/* ================== */
+/* === Hero Page ==== */
+#hero-page {
+    position: relative;
+    z-index: 10;
+}
+
+/* --- Hitung Mundur (Countdown Timer) --- */
+.countdown-wrapper {
+    display: flex;
+    justify-content: center;
+    gap: 15px; /* Jarak antar kotak */
+    margin-top: 1.5rem;
+}
+
+
+.timer-box {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 90px;
+    height: 100px;
+    background-color: transparent;
+    
+    /* Trik Bingkai Ganda Emas */
+    border: 1px solid #d4af37;
+    outline: 2px solid #d4af37;
+    outline-offset: -5px; /* Menarik outline ke dalam kotak */
+    border-radius: 4px;
+    
+    /* Pendaran tipis */
+    box-shadow: 0 4px 10px rgba(212, 175, 55, 0.15);
+}
+
+.time-number {
+    font-family: 'Shippori Mincho', serif;
+    font-size: 2.2rem;
+    font-weight: 700;
+    color: #d4af37; /* Warna emas */
+    line-height: 1;
+    margin-bottom: 5px;
+    text-shadow: 1px 1px 5px rgba(212, 175, 55, 0.3);
+}
+
+.time-label {
+    font-family: 'Shippori Mincho', serif;
+    font-size: 0.75rem;
+    color: #5c0011; /* Warna maroon elegan senada dengan stempel */
+    letter-spacing: 1.5px;
+    font-weight: 600;
+}
+
+/* --- Halaman Profil Pasangan --- */
+
+#couple-profile {
+    position: relative;
+    z-index: 10; 
+}
+
+/* Gaya Teks Kutipan */
+/* Gaya Teks Kutipan (Warna Emas Lebih Terang) */
+.quote-en {
+    font-family: 'Shippori Mincho', serif;
+    font-size: 1.8rem;
+    color: #C99B20; 
+    font-weight: 600; 
+    text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.15); 
+    font-style: italic;
+    line-height: 1.5;
+}
+
+.quote-id {
+    font-family: 'Shippori Mincho', serif;
+    font-size: 0.95rem;
+    color: #5c0011; /* Maroon agar senada dengan stempel Hanko */
+    letter-spacing: 1px;
+}
+
+/* Gaya Teks Nama Pengantin */
+.profile-name {
+    font-family: 'Yusei Magic', sans-serif;
+    font-size: 2.2rem;
+    color: #d4af37;
+    margin-bottom: 0.5rem;
+    text-shadow: 1px 1px 4px rgba(212, 175, 55, 0.2);
+}
+
+/* Gaya Teks Nama Orang Tua */
+.parents-name {
+    font-family: 'Shippori Mincho', serif;
+    font-size: 1rem;
+    color: #45413E; /* Abu-abu gelap agar kontras di atas kaca putih */
+    line-height: 1.6;
+}
+
+/* Bingkai Foto Melingkar ala Jepang */
+.profile-photo {
+    width: 160px;
+    height: 160px;
+    border-radius: 50%;
+    
+    /* Bingkai ganda melingkar */
+    border: 2px solid #d4af37;
+    outline: 1px solid #d4af37;
+    outline-offset: 4px;
+    
+    /* Ruang antara foto dan bingkai */
+    padding: 4px; 
+    
+    box-shadow: 0 5px 15px rgba(212, 175, 55, 0.2);
+}
+
+/* Tampilan sementara untuk Placeholder Foto */
+.placeholder-photo {
+    background-color: rgba(255, 248, 240, 0.8); /* Warna krem kertas washi transparan */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 10px; /* Jarak dari outline */
+}
+
+/* Teks 'Foto' di dalam lingkaran */
+.placeholder-photo::after {
+    content: 'Foto';
+    font-family: 'Shippori Mincho', serif;
+    color: #d4af37;
+    opacity: 0.7;
+    font-size: 1.2rem;
+}
+
+/* --- Halaman Detail Acara --- */
+#event-details {
+    position: relative;
+    width: 100vw;
+    /* Kita gunakan border emas murni agar rapi membingkai section ini */
+    border-top: 3px solid #C49A43; 
+    border-bottom: 3px solid #C49A43;
+    min-height: 100vh;
+    z-index: 20; 
+    background-color: #F8F0E3; 
+}
+
+/* Memaksa SVG untuk memenuhi layar penuh tanpa merusak rasio */
+.washi-bg-svg {
+    position: absolute;
+    top: 0; left: 0;
+    width: 100%; height: 100%;
+    z-index: 0; 
+    object-fit: cover; /* Memastikan tekstur tidak meregang aneh */
+}
+
+/* Memastikan teks konten ada di atas background SVG */
+.event-content-wrapper {
+    position: relative;
+    z-index: 5;
+    padding-top: 5rem;
+    padding-bottom: 3rem; /* Memberikan ruang ekstra di bawah */
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between; /* Mendorong konten ke tengah dan area bawah */
+    min-height: 100vh; /* Agar isinya membentang penuh */
+}
+
+
+
+/* Desain Kotak Acara */
+.event-box {
+    background: rgba(255, 255, 255, 0.4);
+    border: 1px solid rgba(212, 175, 55, 0.5); /* Garis emas tipis */
+    border-radius: 4px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
+    transition: transform 0.3s ease;
+}
+
+.event-box:hover {
+    transform: translateY(-5px); /* Efek melayang saat kursor didekatkan */
+}
+
+.event-title {
+    font-family: 'Shippori Mincho', serif;
+    color: #5c0011;
+    font-weight: 700;
+    letter-spacing: 2px;
+}
+
+.event-text {
+    font-family: 'Shippori Mincho', serif;
+    color: #4a4a4a;
+    font-size: 1.1rem;
+    line-height: 1.6;
+}
+
+/* --- Tambahan Teks & Ornamen Wedding Details --- */
+
+.custom-divider {
+    color: #C49A43; /* Warna emas senada dengan SVG */
+    font-size: 1.2rem;
+    letter-spacing: 2px;
+    opacity: 0.8;
+}
+
+.event-quote {
+    font-family: 'Shippori Mincho', serif;
+    font-size: 1.3rem;
+    color: #5c0011; /* Maroon elegan */
+    font-style: italic;
+}
+
+.presence-text {
+    font-family: 'Shippori Mincho', serif;
+    font-size: 1.2rem;
+    color: #4a4a4a;
+    letter-spacing: 1px;
+}
+
+/* Indikator Scroll dengan animasi pantulan */
+.scroll-indicator {
+    font-family: 'Shippori Mincho', serif;
+    color: #C49A43;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    font-size: 0.85rem;
+    animation: bounceUpDown 2s infinite;
+}
+
+@keyframes bounceUpDown {
+    0%, 20%, 50%, 80%, 100% { transform: translateY(0); }
+    40% { transform: translateY(-10px); }
+    60% { transform: translateY(-5px); }
+}
+
+.bottom-event-area {
+    margin-top: auto; /* Trik CSS: mendorong area ini turun secara otomatis */
+    padding-bottom: 20px; 
+}
+
+/* --- Halaman RSVP --- */
+#rsvp-section {
+    position: relative;
+    width: 100vw;
+    height: 100vh;
+    border-bottom: 3px solid #C49A43; /* Melanjutkan border emas dari section sebelumnya */
+    z-index: 20; 
+    background-color: #F8F0E3; 
+    overflow: hidden;
+}
+
+/* Styling Khusus Input Form */
+.rsvp-label {
+    font-family: 'Shippori Mincho', serif;
+    color: #5c0011;
+    font-weight: 600;
+    letter-spacing: 1px;
+}
+
+/* Membuat kotak input lebih kontras dan rapi */
+.rsvp-input {
+    background-color: rgba(255, 255, 255, 0.55) !important; /* Latar putih semi-transparan */
+    border: 1px solid rgba(212, 175, 55, 0.3); /* Bingkai tipis di seluruh sisi */
+    border-bottom: 2px solid rgba(212, 175, 55, 0.8); /* Garis bawah emas dominan */
+    border-radius: 4px;
+    font-family: 'Shippori Mincho', serif;
+    color: #4a4a4a;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.02) !important;
+    padding: 10px 15px;
+}
+
+/* Tampilan saat input sedang diketik */
+.rsvp-input:focus {
+    background-color: rgba(255, 255, 255, 0.8) !important; /* Menjadi lebih terang */
+    border-color: #C49A43; 
+    border-bottom: 2px solid #C49A43;
+}
+
+.rsvp-input::placeholder {
+    color: rgba(74, 74, 74, 0.4);
+    font-style: italic;
+}
+
+/* Mengunci ukuran textarea agar tidak bisa ditarik user */
+textarea.rsvp-input {
+    resize: none;
+}
+
+/* Mewarnai titik radio button dengan warna emas/maroon */
+.custom-radio:checked {
+    background-color: #5c0011;
+    border-color: #5c0011;
+}
+.custom-radio:focus {
+    box-shadow: 0 0 0 0.25rem rgba(92, 0, 17, 0.25);
+}
+
+/* --- Halaman Wedding Wishes --- */
+#wishes-section {
+    position: relative;
+    width: 100vw;
+    min-height: 100vh; /* Memanjang dinamis mengikuti isi */
+    border-bottom: 3px solid #C49A43;
+    z-index: 20; 
+    background-color: #F8F0E3; 
+    overflow: hidden;
+}
+
+/* Kartu Ucapan */
+.wish-card {
+    background-color: #ffffff;
+    border: 1px solid rgba(196, 154, 67, 0.3); /* Bingkai emas sangat tipis */
+    border-radius: 12px;
+    padding: 20px;
+    position: relative;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.02); /* Bayangan sangat lembut */
+}
+
+/* Avatar Ikon (Bulat) */
+.wish-avatar {
+    width: 45px;
+    height: 45px;
+    border-radius: 50%;
+    background-color: #f2e5d2; /* Warna krem kertas */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: #5c0011;
+    font-size: 1.2rem;
+    flex-shrink: 0;
+}
+
+.wish-header {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    margin-bottom: 12px;
+}
+
+.wish-name {
+    font-family: 'Shippori Mincho', serif;
+    color: #5c0011; /* Maroon gelap */
+    font-weight: 700;
+    font-size: 1.1rem;
+    margin: 0;
+}
+
+.wish-status {
+    font-family: 'Shippori Mincho', serif;
+    color: #888;
+    font-size: 0.85rem;
+    margin: 0;
+}
+
+.wish-message {
+    font-family: 'Shippori Mincho', serif;
+    color: #4a4a4a;
+    font-size: 1rem;
+    line-height: 1.6;
+    margin: 0;
+}
+
+/* Ikon hati tipis di sudut kanan atas kartu */
+.wish-heart-icon {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    color: #c49a43;
+    opacity: 0.7;
+    font-size: 1.1rem;
+}
+
+/* Tombol Load More */
+.btn-outline-wishes {
+    border: 1px solid #5c0011 !important; /* Warna maroon */
+    color: #5c0011 !important;
+    background: transparent !important;
+    font-family: 'Shippori Mincho', serif;
+    border-radius: 50px !important; /* Pastikan berbentuk kapsul sempurna */
+    padding: 8px 30px;
+    font-size: 1rem;
+    transition: all 0.3s ease;
+}
+
+.btn-outline-wishes:hover {
+    background-color: #5c0011 !important;
+    color: #ffffff !important;
+}
+
+/* --- Halaman Penutup (Thank You) --- */
+#closing-section {
+    position: relative;
+    width: 100vw;
+    min-height: 100vh;
+    
+    /* Memanggil gambar latar belakang baru */
+    background-image: url('Assets/Sakura\ Mist\ on\ Warm\ Paper.png'); 
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    
+    z-index: 20; 
+    overflow: hidden;
+}
+
+/* Lapisan tipis transparan (opsional) agar teks lebih mudah dibaca jika bertabrakan dengan motif dahan */
+#closing-section::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0;
+    width: 100%; height: 100%;
+    background-color: rgba(248, 240, 227, 0.3); /* Warna krem sangat tipis */
+    z-index: 1;
+}
+
+/* Mengangkat konten teks agar berada di atas background dan overlay */
+.closing-content-wrapper {
+    position: relative;
+    z-index: 5;
+    max-width: 800px;
+}
+/* Mengatur SVG Sudut di Halaman Penutup */
+.corner-bg-svg {
+    position: absolute;
+    top: 0; left: 0;
+    width: 100%; height: 100%;
+    z-index: 2;
+    pointer-events: none; /* Mencegah SVG menghalangi kursor */
+}
